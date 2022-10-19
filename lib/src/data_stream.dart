@@ -3,11 +3,11 @@ import 'package:meta/meta.dart' show mustCallSuper;
 
 /// Este objeto foi criado para facilitar e externalizar a instância de uma [StreamController]
 /// deixando dentro da app apenas os códigos necessários
-class ValuesStream<T> {
+class DataStream<T> {
   /// Criar uma instância [StreamController] e suas propriedades
-  /// 
-  /// Este objeto pode ser combinado com qualquer objeto que usa uma stream
-  /// 
+  ///
+  /// Este objeto pode ser combinado com qualquer objeto que usa uma stream, no flutter [StreamBuilder]
+  ///
   /// Ao usar esse objeto, devemos se atentar em chamar o método [dispose] quando o objeto não tiver utilidade
   ///
   /// variável generica [dynamic]
@@ -15,7 +15,7 @@ class ValuesStream<T> {
 
   final StreamController<T> streamController = StreamController<T>.broadcast();
 
-  ValuesStream(this._initialValue) {
+  DataStream(this._initialValue) {
     streamController.stream.listen((value) {
       _dataValue = value;
     });
@@ -38,9 +38,8 @@ class ValuesStream<T> {
     sink.close();
     streamController.close();
   }
-  
 }
 
-abstract class DisposeValueStream {
+abstract class DisposeDataStream {
   void dispose() {}
 }
