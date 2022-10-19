@@ -15,7 +15,8 @@ repository: https://github.com/Suebersson/dart_dev_utils.git
 environment:
   sdk: '>=2.16.1 <3.0.0'
 
-# dependencies:
+dependencies:
+  meta: ^1.8.0
 #   path: ^1.8.0
 
 dev_dependencies:

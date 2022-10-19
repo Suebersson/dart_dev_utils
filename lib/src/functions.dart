@@ -3,7 +3,7 @@ import 'dart:convert' show base64;
 import 'dart:typed_data' show Uint8List;
 
 import 'constants.dart';
-import 'consolidateHttpClientResponseBytes.dart' show consolidateHttpClientResponseBytes;
+import 'consolidate_byte_data.dart' show consolidateHttpClientResponseBytes;
 
 class Functions{
 

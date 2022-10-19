@@ -1,8 +1,8 @@
 import 'dart:io' show File, HttpClientRequest, HttpClientResponse;
 import 'dart:convert' show json;
 import 'dart:typed_data' show Uint8List;
-import './consolidateHttpClientResponseBytes.dart' show consolidateHttpClientResponseBytes;
 
+import 'consolidate_byte_data.dart' show consolidateHttpClientResponseBytes;
 import 'constants.dart';
 import 'functions.dart';
 
@@ -14,7 +14,7 @@ final File _cachedFileData =
 
 enum _OperationType{add, upDate}
 
-class FileCaching {
+class FilesCache {
   /// Classe resposável por armazenar, ler e excluir os arquivos em cache na mémoria 
 
   HttpClientRequest? _request;
@@ -144,9 +144,9 @@ class FileCaching {
             }
           });
 
-          if(counter > _data.length) 
+          if(counter > _data.length) {
             _upDateJsonDataBaseCache(data: _data, type: _OperationType.upDate);
-
+          }
           _data.clear();
         
         }
