@@ -11,3 +11,5 @@
 ## 1.0.5 Remoção da biblioteca de salvar temporariamente arquivos na memória
 
 ## 1.0.6 Remoção da função 'consolidateByteData'
+
+## 1.0.7 Implementação de novas expressões regulares e funções

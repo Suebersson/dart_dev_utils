@@ -3,7 +3,7 @@ import 'package:dart_dev_utils/dart_dev_utils.dart';
 void main() {
   
   // Formato: 000.000.000-00
-  print(Constants.i.regExpCPF.hasMatch('000.000.000-00')); // true
+  print(Constants.i.regExpCpfCnpj.hasMatch('000.000.000-00')); // true
   
   // Formatos: 00900000000; (00)900000000; 0090000-0000; (00)90000-0000
   print(Constants.i.regExpCellPhoneBR.hasMatch('(00)900000000')); // true

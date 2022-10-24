@@ -11,21 +11,21 @@ class Functions {
   }
 
   /// verificar se a url é válida
-  bool isNetworkURL({required String url}) {
+  bool isNetworkURL(String url) {
     assert(url.isNotEmpty, 'Insira o endereço da URL');
     return Constants.i.regExpUrls.hasMatch(url);
   }
 
   /// verificar se o e-mail é válida
-  bool isEmail({required String email}) {
+  bool isEmail(String email) {
     assert(email.isNotEmpty, 'Insira o endereço da E-mail');
     return Constants.i.regExpEmails.hasMatch(email);
   }
 
   /// verificar se a String e numerica
-  bool isNumeric({required String value}) {
-    assert(value.isNotEmpty, 'Insira uma string numérica');
-    var number = num.tryParse(value);
+  bool isNumeric(String str) {
+    assert(str.isNotEmpty, 'Insira uma string numérica');
+    var number = num.tryParse(str);
     if (!number!.isNaN && number.isFinite) {
       return true;
     } else {
@@ -78,5 +78,35 @@ class Functions {
       return Constants.i.charactersWithoutAccent[
           Constants.i.charactersWithAccent.indexOf(m.input[m.start])];
     });
+  }
+
+  /// Essa função é ideal para obeter um valor de uma data através
+  /// de um texto logo ou quando o formato da data na string é desconhecido
+  DateTime? getDateFromText(String str) {
+    /// Padrões de formato que seram reconhecidos pela função
+    /// US: yyyy-mm-dd; yyyy/mm/dd
+    /// BR: dd-mm-yyyy; dd/mm/yyyy
+    assert(str.isNotEmpty, 'Insira um valor de String');
+
+    if (str.contains('/')) str = str.replaceAll('/', '-');
+
+    if (Constants.i.regExpDateUS.hasMatch(str)) {
+      /// Formato US: yyyy-mm-dd ou yyyy/mm/dd
+
+      return DateTime.parse(Constants.i.regExpDateUS.stringMatch(str)!);
+    } else if (Constants.i.regExpDateBR.hasMatch(str)) {
+      /// Formato BR: dd-mm-yyyy ou dd/mm/yyyy
+
+      /// Converter para o formato US
+      str = Constants.i.regExpDateBR.stringMatch(str)!;
+      str = str.split('-').reversed.join('-');
+
+      /// yyyy-mm-dd
+
+      return DateTime.parse(str);
+    } else {
+      //throw 'O valor da String não contém nenhum formato de data.';
+      return null;
+    }
   }
 }

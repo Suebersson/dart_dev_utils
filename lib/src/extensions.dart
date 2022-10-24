@@ -3,15 +3,15 @@ import 'functions.dart';
 extension FunctionsForString on String {
   /// verificar se a url é válida
   // ignore: unnecessary_this
-  bool get isNetworkURL => Functions.i.isNetworkURL(url: this);
+  bool get isNetworkURL => Functions.i.isNetworkURL(this);
 
   /// verificar se o e-mail é válida
   // ignore: unnecessary_this
-  bool get isEmail => Functions.i.isEmail(email: this);
+  bool get isEmail => Functions.i.isEmail(this);
 
   /// verificar se a String e numerica
   // ignore: unnecessary_this
-  bool get isNumeric => Functions.i.isNumeric(value: this);
+  bool get isNumeric => Functions.i.isNumeric(this);
 
   /// Converter a primera letra para maiúscula
   // ignore: unnecessary_this
@@ -37,4 +37,8 @@ extension FunctionsForString on String {
   /// Remover acentos de uma cadeia de caracteres
   // ignore: unnecessary_this
   String get removeAccents => Functions.i.removeAccents(this);
+
+  /// Obter data em um texto
+  // ignore: unnecessary_this
+  DateTime? get getDateFromText => Functions.i.getDateFromText(this);
 }
