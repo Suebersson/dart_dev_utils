@@ -1,14 +1,12 @@
-import 'constants.dart';
+import 'dart:async';
+import 'dart:developer' as developer;
+
+import './constants.dart';
 
 class Functions {
-  static Functions? _instance;
-
+  static final Functions _instance = Functions._();
+  static Functions get i => _instance;
   Functions._();
-
-  static Functions get i {
-    _instance ??= Functions._();
-    return _instance!;
-  }
 
   /// verificar se a url é válida
   bool isNetworkURL(String url) {
@@ -97,16 +95,48 @@ class Functions {
     } else if (Constants.i.regExpDateBR.hasMatch(str)) {
       /// Formato BR: dd-mm-yyyy ou dd/mm/yyyy
 
-      /// Converter para o formato US
+      /// Converter para o formato US => yyyy-mm-dd
       str = Constants.i.regExpDateBR.stringMatch(str)!;
       str = str.split('-').reversed.join('-');
-
-      /// yyyy-mm-dd
 
       return DateTime.parse(str);
     } else {
       //throw 'O valor da String não contém nenhum formato de data.';
       return null;
     }
+  }
+}
+
+// ###########################################################################
+//
+// Método/funções que devem ficar fora de uma classe para que possam ser
+// acessadas e usadas por qualquer método estático ou não estático
+//
+// ###########################################################################
+
+/// Este método foi criado para substituir o método [print] do dart,
+/// o mesmo imprime uma mesagem de texto no console apenas se a app
+/// estiver sendo executada no modo debug
+void printLog(
+  String message, {
+  DateTime? time,
+  int? sequenceNumber,
+  int level = 0,
+  String name = '',
+  Zone? zone,
+  Object? error,
+  StackTrace? stackTrace,
+}) {
+  if (isRunDebugMode_) {
+    developer.log(
+      message,
+      time: time,
+      sequenceNumber: sequenceNumber,
+      level: level,
+      name: name,
+      zone: zone,
+      error: error,
+      stackTrace: stackTrace,
+    );
   }
 }

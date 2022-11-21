@@ -1,9 +1,10 @@
 import 'dart:async' show Stream, StreamController;
 import 'package:meta/meta.dart' show mustCallSuper;
+import 'disposeble.dart';
 
 /// Este objeto foi criado para facilitar e externalizar a instância de uma [StreamController]
 /// deixando dentro da app apenas os códigos necessários
-class DataStream<T> {
+class DataStream<T> implements Disposeble{
   /// Criar uma instância [StreamController] e suas propriedades
   ///
   /// Este objeto pode ser combinado com qualquer objeto que usa uma stream, no flutter [StreamBuilder]
@@ -34,12 +35,9 @@ class DataStream<T> {
   set value(T newValue) => sink.add(newValue);
 
   @mustCallSuper
+  @override
   void dispose() {
     sink.close();
     streamController.close();
   }
-}
-
-abstract class DisposeDataStream {
-  void dispose() {}
 }

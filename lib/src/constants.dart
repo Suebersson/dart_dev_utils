@@ -1,12 +1,7 @@
 class Constants {
-  static Constants? _instance;
-
+  static final Constants _instance = Constants._();
+  static Constants get i => _instance;
   Constants._();
-
-  static Constants get i {
-    _instance ??= Constants._();
-    return _instance!;
-  }
 
   /// expressão regular para válida url
   final RegExp regExpUrls = RegExp(
@@ -62,4 +57,20 @@ class Constants {
 
   /// Caracteres com acentos
   final RegExp regExpAccentedCharacters = RegExp('[À-ž]');
+
+  bool get isRunProfileMode => isRunProfileMode_;
+  bool get isRunReleaseMode => isRunReleaseMode_;
+  bool get isRunDebugMode => isRunDebugMode_;
 }
+
+// ###########################################################################
+//
+// Variavéis que devem ficar fora de uma classe para que possam ser
+// acessadas e usadas por qualquer método estático ou não estático
+//
+// ###########################################################################
+
+/// Modo execução da aplicação
+const bool isRunProfileMode_ = bool.fromEnvironment('dart.vm.profile');
+const bool isRunReleaseMode_ = bool.fromEnvironment('dart.vm.product');
+const bool isRunDebugMode_ = !isRunReleaseMode_ && !isRunProfileMode_;

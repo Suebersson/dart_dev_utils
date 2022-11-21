@@ -13,3 +13,5 @@
 ## 1.0.6 Remoção da função 'consolidateByteData'
 
 ## 1.0.7 Implementação de novas expressões regulares e funções
+
+## 1.0.8 Implementação das classes Disposeble, DartDevUtils; método printLog 
