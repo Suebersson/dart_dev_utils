@@ -74,3 +74,12 @@ class Constants {
 const bool isRunProfileMode_ = bool.fromEnvironment('dart.vm.profile');
 const bool isRunReleaseMode_ = bool.fromEnvironment('dart.vm.product');
 const bool isRunDebugMode_ = !isRunReleaseMode_ && !isRunProfileMode_;
+
+enum PasswordType {
+  onlyNumbers,
+  onlyCapitalLetters,
+  onlyLowerCaseLetters,
+  upperLowerCaseLetters,
+  numbersLetters,
+  characterMix
+}

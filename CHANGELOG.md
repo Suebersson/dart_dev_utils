@@ -15,3 +15,5 @@
 ## 1.0.7 Implementação de novas expressões regulares e funções
 
 ## 1.0.8 Implementação das classes Disposeble, DartDevUtils; método printLog 
+
+## 1.0.9 Implementação da função passwordGenerate
