@@ -40,10 +40,10 @@ for /f %%f in ('git config --get user.name') do set GIT_USER=%%f
 @echo ================================================================================================
 @echo.
 
-git init
+::git init
 git add .
 git commit -m %thisFolder%
-git remote add %BRANCH% %GIT_DOMAIN%%GIT_USER%/%thisFolder%.git
+::git remote add %BRANCH% %GIT_DOMAIN%%GIT_USER%/%thisFolder%.git
 git pull %BRANCH% main
 git push -u %BRANCH% main
 
