@@ -1,8 +1,6 @@
-class Constants {
-  static final Constants _instance = Constants._();
-  static Constants get i => _instance;
-  Constants._();
+import './mixin_dart_dev_utils.dart';
 
+class Constants {
   /// expressão regular para válida url
   final RegExp regExpUrls = RegExp(
       r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");
@@ -69,6 +67,8 @@ class Constants {
 // acessadas e usadas por qualquer método estático ou não estático
 //
 // ###########################################################################
+
+final DartDevUtils dartDevUtils = DartDevUtils();
 
 /// Modo execução da aplicação
 const bool isRunProfileMode_ = bool.fromEnvironment('dart.vm.profile');

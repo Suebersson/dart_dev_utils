@@ -5,20 +5,16 @@ import 'dart:developer' as developer;
 import './constants.dart';
 
 class Functions {
-  static final Functions _instance = Functions._();
-  static Functions get i => _instance;
-  Functions._();
-
   /// verificar se a url é válida
   bool isNetworkURL(String url) {
     assert(url.isNotEmpty, 'Insira o endereço da URL');
-    return Constants.i.regExpUrls.hasMatch(url);
+    return dartDevUtils.regExpUrls.hasMatch(url);
   }
 
   /// verificar se o e-mail é válida
   bool isEmail(String email) {
     assert(email.isNotEmpty, 'Insira o endereço da E-mail');
-    return Constants.i.regExpEmails.hasMatch(email);
+    return dartDevUtils.regExpEmails.hasMatch(email);
   }
 
   /// verificar se a String e numerica
@@ -53,19 +49,19 @@ class Functions {
   /// obter apenas caracteres alfabéticos e númericos
   String getOnlyAlphabetsNumbers(String str) {
     assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(Constants.i.regExpOnlyAlphabetsNumbers, '');
+    return str.replaceAll(dartDevUtils.regExpOnlyAlphabetsNumbers, '');
   }
 
   /// obter apenas caracteres númericos
   String getOnlyNumbers(String str) {
     assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(Constants.i.regExpOnlyNumbers, '');
+    return str.replaceAll(dartDevUtils.regExpOnlyNumbers, '');
   }
 
   /// obter apenas caracteres alfabéticos
   String getOnlyAlphabets(String str) {
     assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(Constants.i.regExpOnlyAlphabets, '');
+    return str.replaceAll(dartDevUtils.regExpOnlyAlphabets, '');
   }
 
   /// Remover acentos de uma cadeia de caracteres
@@ -73,9 +69,9 @@ class Functions {
     // Posição: m.start
     // Caracter: m.input[m.start]
     assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAllMapped(Constants.i.regExpAccentedCharacters, (m) {
-      return Constants.i.charactersWithoutAccent[
-          Constants.i.charactersWithAccent.indexOf(m.input[m.start])];
+    return str.replaceAllMapped(dartDevUtils.regExpAccentedCharacters, (m) {
+      return dartDevUtils.charactersWithoutAccent[
+          dartDevUtils.charactersWithAccent.indexOf(m.input[m.start])];
     });
   }
 
@@ -89,15 +85,15 @@ class Functions {
 
     if (str.contains('/')) str = str.replaceAll('/', '-');
 
-    if (Constants.i.regExpDateUS.hasMatch(str)) {
+    if (dartDevUtils.regExpDateUS.hasMatch(str)) {
       /// Formato US: yyyy-mm-dd ou yyyy/mm/dd
 
-      return DateTime.parse(Constants.i.regExpDateUS.stringMatch(str)!);
-    } else if (Constants.i.regExpDateBR.hasMatch(str)) {
+      return DateTime.parse(dartDevUtils.regExpDateUS.stringMatch(str)!);
+    } else if (dartDevUtils.regExpDateBR.hasMatch(str)) {
       /// Formato BR: dd-mm-yyyy ou dd/mm/yyyy
 
       /// Converter para o formato US => yyyy-mm-dd
-      str = Constants.i.regExpDateBR.stringMatch(str)!;
+      str = dartDevUtils.regExpDateBR.stringMatch(str)!;
       str = str.split('-').reversed.join('-');
 
       return DateTime.parse(str);
