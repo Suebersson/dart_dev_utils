@@ -19,3 +19,5 @@
 ## 1.0.9 Implementação da função passwordGenerate
 
 ## 1.1.0 Melhorias
+
+## 1.1.1 Melhorias no objeto DataStream (criar uma instância de uma streamController comum ou uma broadcast)
