@@ -48,13 +48,47 @@ class Constants {
   /// válidar apenas caracteres númericos
   final RegExp regExpOnlyNumbers = RegExp('[^0-9]');
 
-  final String charactersWithAccent =
-      'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
-  final String charactersWithoutAccent =
-      'AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz';
+  // https://theasciicode.com.ar/
+  final Map<String, Set<String>> charactersWithAccent = Map.unmodifiable({
+    'a': {'à', 'á', 'â', 'ã', 'ä', 'å', 'ā', 'ă', 'ą', 'aͤ', 'ǟ'},
+    'A': {'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ā', 'Ă', 'Ą', 'Aͤ', 'Ǟ'},
+    'e': {'è', 'é', 'ê', 'ë', 'ę'},
+    'E': {'È', 'É', 'Ê', 'Ë', 'Ę'},
+    'i': {'ì', 'í', 'î', 'ï'},
+    'I': {'Ì', 'Í', 'Î', 'Ï'},
+    'o': {'ò', 'ó', 'ô', 'õ', 'ö', 'ø'},
+    'O': {'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ø'},
+    'u': {'ù', 'ú', 'û', 'ü', 'ŭ'},
+    'U': {'Ù', 'Ú', 'Û', 'Ü', 'Ŭ'},
+    'th': {'Ð', 'ð'},
+    'c': {'ç', 'ĉ', 'č', 'ć'},
+    'C': {'Ç', 'Ĉ', 'Č', 'Ć'},
+    'g': {'ĝ', 'ğ'},
+    'G': {'Ĝ', 'Ğ'},
+    'h': {'ĥ'},
+    'H': {'Ĥ'},
+    'j': {'ĵ'},
+    'J': {'Ĵ'},
+    's': {'š', 'ś', 'ŝ', 'ș', 'ş'},
+    'S': {'Š', 'Ś', 'Ŝ', 'Ș', 'Ş'},
+    'l': {'ł'},
+    'L': {'Ł'},
+    'n': {'ñ', 'ń'},
+    'N': {'Ñ', 'Ń'},
+    't': {'ț'},
+    'T': {'Ț'},
+    'y': {'ÿ', 'ý'},
+    'Y': {'Ÿ', 'Ý'},
+    'z': {'ž', 'ź', 'ż'},
+    'Z': {'Ž', 'Ź', 'Ż'},
+    'oe': {'œ'},
+    'OE': {'Œ'},
+    'ae': {'æ'},
+    'AE': {'Æ'}
+  });
 
   /// Caracteres com acentos
-  final RegExp regExpAccentedCharacters = RegExp('[À-ž]');
+  final RegExp regExpAccentedCharacters = RegExp('[À-ž]', multiLine: true);
 
   bool get isRunProfileMode => isRunProfileMode_;
   bool get isRunReleaseMode => isRunReleaseMode_;
@@ -83,3 +117,5 @@ enum PasswordType {
   numbersLetters,
   characterMix
 }
+
+enum NumericBase { binary, octal, hexadecimal, duotrigesimal }

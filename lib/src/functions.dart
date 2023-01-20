@@ -3,6 +3,7 @@ import 'dart:math' show Random;
 import 'dart:developer' as developer;
 
 import './constants.dart';
+import './extensions.dart';
 
 class Functions {
   /// verificar se a url é válida
@@ -65,13 +66,21 @@ class Functions {
   }
 
   /// Remover acentos de uma cadeia de caracteres
-  String removeAccents(String str) {
-    // Posição: m.start
-    // Caracter: m.input[m.start]
-    assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAllMapped(dartDevUtils.regExpAccentedCharacters, (m) {
-      return dartDevUtils.charactersWithoutAccent[
-          dartDevUtils.charactersWithAccent.indexOf(m.input[m.start])];
+  String removeAccents(String text, {Pattern? pattern}) {
+    // assert(text.isNotEmpty, 'Insira um valor de string');
+
+    // RegExp usada no JavaScript => RegExp("[\u0300-\u036f]"). A mesma só funciona
+    // se todos os caracteres forem desmembrados para o padrão NFD usando a função "normalize()"
+    // no javaScript
+    return text.replaceAllMapped(
+        pattern ?? dartDevUtils.regExpAccentedCharacters, (match) {
+      // Posição: match.start
+      // Caracter(texto): match.input[match.start]
+      String l = match.input[match.start];
+      return dartDevUtils.charactersWithAccent.entries
+          .singleWhere((mapEntry) => mapEntry.value.contains(l),
+              orElse: () => MapEntry(l, {}))
+          .key;
     });
   }
 
@@ -195,6 +204,22 @@ class Functions {
           },
         ).join('');
     }
+  }
+
+  /// Converter uma cadeia de caracteres para uma base númerica
+  List<String> convertStringToNumericalBase(String text,
+      {NumericBase typeBase = NumericBase.binary}) {
+    // assert(text.isNotEmpty, 'Insira um texto para fazer a conversão');
+
+    /// Exemplo:
+    /// ```dart
+    /// List<String> listUnicode =
+    ///   convertStringToNumericalBase('Suebersson montalvão', typeBase: NumericBase.hexadecimal)
+    ///     .map((e) => '\\u00$e').toList();
+    /// print(listUnicode);
+    /// ```
+
+    return Runes(text).map((i) => i.toRadixString(typeBase.getBase)).toList();
   }
 }
 
