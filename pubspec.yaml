@@ -1,6 +1,6 @@
 name: dart_dev_utils
 description: Package criada para externalizar função uteis que auxiliará no desenvolvimento de Apps dart e flutter para todos as plataformas.
-version: 1.1.1
+version: 1.1.2
 homepage: https://github.com/Suebersson/dart_dev_utils.git
 repository: https://github.com/Suebersson/dart_dev_utils
 
@@ -17,7 +17,7 @@ environment:
   #sdk: '>=2.18.2 <3.0.0'
 
 dependencies:
-  meta: ^1.8.0
+  meta: ^1.7.0
 
 dev_dependencies:
   lints: ^1.0.0
