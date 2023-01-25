@@ -8,20 +8,29 @@ import './extensions.dart';
 class Functions {
   /// verificar se a url é válida
   bool isNetworkURL(String url) {
-    assert(url.isNotEmpty, 'Insira o endereço da URL');
+    // assert(url.isNotEmpty, 'Insira o endereço da URL');
+    // impossibilitar o processamento se a string for vazia
+    if (url.isEmpty) return false;
+
     return dartDevUtils.regExpUrls.hasMatch(url);
   }
 
   /// verificar se o e-mail é válida
   bool isEmail(String email) {
-    assert(email.isNotEmpty, 'Insira o endereço da E-mail');
+    // assert(email.isNotEmpty, 'Insira o endereço da E-mail');
+    // impossibilitar o processamento se a string for vazia
+    if (email.isEmpty) return false;
+
     return dartDevUtils.regExpEmails.hasMatch(email);
   }
 
   /// verificar se a String e numerica
-  bool isNumeric(String str) {
-    assert(str.isNotEmpty, 'Insira uma string numérica');
-    var number = num.tryParse(str);
+  bool isNumeric(String text) {
+    // assert(str.isNotEmpty, 'Insira uma string numérica');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return false;
+
+    var number = num.tryParse(text);
     if (!number!.isNaN && number.isFinite) {
       return true;
     } else {
@@ -30,15 +39,21 @@ class Functions {
   }
 
   /// Converter a primera letra para maiúscula
-  String capitalize(String str) {
-    assert(str.isNotEmpty, 'Insira a String para converção');
-    return str[0].toUpperCase() + str.substring(1);
+  String capitalize(String text) {
+    // assert(str.isNotEmpty, 'Insira a String para converção');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
+
+    return text[0].toUpperCase() + text.substring(1);
   }
 
   /// Converter a primeira letra de todas as palavras para maiúscula
-  String capitalizeAll(String str) {
-    assert(str.isNotEmpty, 'Insira a String para converção');
-    return str
+  String capitalizeAll(String text) {
+    // assert(str.isNotEmpty, 'Insira a String para converção');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
+
+    return text
         .split(' ')
         .asMap()
         .entries
@@ -48,26 +63,37 @@ class Functions {
   }
 
   /// obter apenas caracteres alfabéticos e númericos
-  String getOnlyAlphabetsNumbers(String str) {
-    assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(dartDevUtils.regExpOnlyAlphabetsNumbers, '');
+  String getOnlyAlphabetsNumbers(String text) {
+    // assert(str.isNotEmpty, 'Insira um valor de string');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
+
+    return text.replaceAll(dartDevUtils.regExpOnlyAlphabetsNumbers, '');
   }
 
   /// obter apenas caracteres númericos
-  String getOnlyNumbers(String str) {
-    assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(dartDevUtils.regExpOnlyNumbers, '');
+  String getOnlyNumbers(String text) {
+    // assert(str.isNotEmpty, 'Insira um valor de string');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
+
+    return text.replaceAll(dartDevUtils.regExpOnlyNumbers, '');
   }
 
   /// obter apenas caracteres alfabéticos
-  String getOnlyAlphabets(String str) {
-    assert(str.isNotEmpty, 'Insira um valor de string');
-    return str.replaceAll(dartDevUtils.regExpOnlyAlphabets, '');
+  String getOnlyAlphabets(String text) {
+    // assert(str.isNotEmpty, 'Insira um valor de string');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
+
+    return text.replaceAll(dartDevUtils.regExpOnlyAlphabets, '');
   }
 
   /// Remover acentos de uma cadeia de caracteres
   String removeAccents(String text, {Pattern? pattern}) {
     // assert(text.isNotEmpty, 'Insira um valor de string');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return text;
 
     // RegExp usada no JavaScript => RegExp("[\u0300-\u036f]"). A mesma só funciona
     // se todos os caracteres forem desmembrados para o padrão NFD usando a função "normalize()"
@@ -86,26 +112,29 @@ class Functions {
 
   /// Essa função é ideal para obeter um valor de uma data através
   /// de um texto logo ou quando o formato da data na string é desconhecido
-  DateTime? getDateFromText(String str) {
+  DateTime? getDateFromText(String text) {
     /// Padrões de formato que seram reconhecidos pela função
     /// US: yyyy-mm-dd; yyyy/mm/dd
     /// BR: dd-mm-yyyy; dd/mm/yyyy
-    assert(str.isNotEmpty, 'Insira um valor de String');
 
-    if (str.contains('/')) str = str.replaceAll('/', '-');
+    // assert(str.isNotEmpty, 'Insira um valor de String');
+    // impossibilitar o processamento se a string for vazia
+    if (text.isEmpty) return null;
 
-    if (dartDevUtils.regExpDateUS.hasMatch(str)) {
+    if (text.contains('/')) text = text.replaceAll('/', '-');
+
+    if (dartDevUtils.regExpDateUS.hasMatch(text)) {
       /// Formato US: yyyy-mm-dd ou yyyy/mm/dd
 
-      return DateTime.parse(dartDevUtils.regExpDateUS.stringMatch(str)!);
-    } else if (dartDevUtils.regExpDateBR.hasMatch(str)) {
+      return DateTime.parse(dartDevUtils.regExpDateUS.stringMatch(text)!);
+    } else if (dartDevUtils.regExpDateBR.hasMatch(text)) {
       /// Formato BR: dd-mm-yyyy ou dd/mm/yyyy
 
       /// Converter para o formato US => yyyy-mm-dd
-      str = dartDevUtils.regExpDateBR.stringMatch(str)!;
-      str = str.split('-').reversed.join('-');
+      text = dartDevUtils.regExpDateBR.stringMatch(text)!;
+      text = text.split('-').reversed.join('-');
 
-      return DateTime.parse(str);
+      return DateTime.parse(text);
     } else {
       //throw 'O valor da String não contém nenhum formato de data.';
       return null;

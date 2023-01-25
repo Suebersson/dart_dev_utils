@@ -50,7 +50,16 @@
 - Implementação da função convertStringToNumericalBase e suas extensões: String.toBinaryList, String.toOctalList, String.toHexadecimalList, String.toDuotrigesimalList, String.toUniCodeList, String.toHexaBytes, String.toBase64, String.base64ToUTF16String
 - Implementação da função Map.getValueFromKey
 - Implementação da função List.firstWhereMultComputation
+
 </br>
 </br>
 
 ## 1.1.2 Correção da dependência [meta] para 1.7.0
+
+</br>
+</br>
+
+## 1.1.3 Substituição de alguns [assert] por [if] para ao invés de gerar um erro, impossibilitar a execução e processamento de uma função
+
+</br>
+</br>

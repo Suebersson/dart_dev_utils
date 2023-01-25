@@ -161,7 +161,7 @@ extension GetValueFromKey on Map {
       'name': 'Sueberssom Montalvão',
       'age': 198,
       'heigth': '1.70',
-      'birthData': '',
+      'birthData': '1825-04-14',
       'homePage': 'http://suebersson.dev',
       'is_dev': true,
       'anything': null,
@@ -189,7 +189,7 @@ extension GetValueFromKey on Map {
     print(
       mapData.getValueFromKey<String, DateTime>(
         'birthData', 
-        computation: (e) => DateTime.tryParse('1825-04-14'),
+        computation: (e) => DateTime.tryParse(e),
         orElseValue: DateTime.now()
       )
     ); // 1825-04-14 00:00:00.000
