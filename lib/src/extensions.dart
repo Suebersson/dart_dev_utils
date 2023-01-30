@@ -11,6 +11,9 @@ extension FunctionsForString on String {
   /// verificar se o e-mail é válida
   bool get isEmail => dartDevUtils.isEmail(this);
 
+  /// verificar se o texto tem o formato de endereço de telefone
+  bool get isPhone => dartDevUtils.isPhone(this);
+
   /// verificar se a String e numerica
   bool get isNumeric => dartDevUtils.isNumeric(this);
 

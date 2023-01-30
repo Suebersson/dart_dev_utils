@@ -24,6 +24,14 @@ class Functions {
     return dartDevUtils.regExpEmails.hasMatch(email);
   }
 
+  /// verificar se o texto tem o formato de endereço de telefone
+  bool isPhone(String number) {
+    // impossibilitar o processamento se a string for vazia
+    if (number.isEmpty) return false;
+
+    return dartDevUtils.regExpGlobalPhone.hasMatch(number);
+  }
+
   /// verificar se a String e numerica
   bool isNumeric(String text) {
     // assert(str.isNotEmpty, 'Insira uma string numérica');

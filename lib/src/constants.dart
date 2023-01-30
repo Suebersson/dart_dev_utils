@@ -39,6 +39,33 @@ class Constants {
   final RegExp regExpFixePhoneBR = RegExp(
       r"(\d{2}(\s|)\d{8})|(\(\d{2}\)(\s|)\d{8})|(\d{2}(\s|)\d{4}-\d{4})|(\(\d{2}\)(\s|)\d{4}-\d{4})");
 
+  /// Expressão regular para válidar número de telefone no formato global:
+  ///
+  ///
+  /// Prefixos com parenteses:
+  ///   RegExp(r'\(((\d{1}|\+\d{1})|(\d{2}|\+\d{2})|(\d{3}|\+\d{3})|(\d{4}|\+\d{4}))\)( \d{1}|\d{1}).*\d');
+  ///
+  ///     (+0)...; (+00)...; (+000)...; (+0000)...;
+  ///     (0)...;  (00)...;  (000)...;  (0000)...
+  ///
+  ///
+  /// Prefixos sem parenteses: RegExp(r'(\+\d{1}|\+\d{2}|\+\d{3}|\+\d{4})( \d{1}|\d{1}).*\d')
+  ///     +0...; +00...; +000...; +0000...
+  ///
+  ///
+  /// Corpo do endereço: ( \d{1}|\d{1}).*\d
+  ///   ===> Começa com um digito(com ou sem um espaço no inicio) e termina digitos
+  ///
+  /// Exemplo de formatos:
+  /// - Prefixos com ou sem parenteses desde que use o caracter '+'
+  /// - Prexixos de 1 4 digitos
+  /// - com ou sem um espaço no inicio do corpo de endereço
+  /// (+00)00000000;  (+00) 00000000; (+00)0000-0000; (+00) 0000-0000
+  /// +000 000000000; +000000-0000;   +000 00000-0000
+  ///
+  final regExpGlobalPhone = RegExp(
+      r'\(((\d{1}|\+\d{1})|(\d{2}|\+\d{2})|(\d{3}|\+\d{3})|(\d{4}|\+\d{4}))\)( \d{1}|\d{1}).*\d|(\+\d{1}|\+\d{2}|\+\d{3}|\+\d{4})( \d{1}|\d{1}).*\d');
+
   /// válidar apenas caracteres alfabéticos e númericos
   final RegExp regExpOnlyAlphabetsNumbers = RegExp('[^A-Za-z0-9]');
 

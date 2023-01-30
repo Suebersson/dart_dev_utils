@@ -63,3 +63,5 @@
 
 </br>
 </br>
+
+## 1.1.4 Implementação da expressão regular [regExpGlobalPhone] para válidar números de telefones através do prefixo

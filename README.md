@@ -7,6 +7,7 @@
 
 - isNetworkURL
 - isEmail
+- isPhone
 - isNumeric
 - capitalize
 - capitalizeAll
@@ -35,6 +36,7 @@
 - regExpCEP
 - regExpCellPhoneBR
 - regExpFixePhoneBR
+- regExpGlobalPhone
 - regExpOnlyAlphabetsNumbers
 - regExpOnlyAlphabets
 - regExpOnlyNumbers
