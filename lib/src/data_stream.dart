@@ -1,5 +1,5 @@
 import 'dart:async' show StreamController, StreamSubscription, FutureOr, Timer;
-import 'package:meta/meta.dart' show mustCallSuper;
+// import 'package:meta/meta.dart' show mustCallSuper;
 
 import './disposeble.dart';
 import './exceptions.dart';
@@ -131,6 +131,57 @@ class DataStream<O> implements Disposeble {
         ._callbackPeriodic(duration: duration, callBack: callBack);
   }
 
+  /// Este objeto[DataStream.periodicWithInitialValue] foi criado para
+  /// substituir o objeto [Stream.periodic].
+  ///
+  /// Com ele, temos mais recursos e nos possibilita disposar o mesmo
+  factory DataStream.periodicWithInitialValue(
+      {required O initialValue,
+      required Duration duration,
+      required FutureOr<void> Function(DataStream<O>, int) callBack,
+      void Function()? onListen,
+      FutureOr<void> Function()? onCancel,
+      bool saveAllData = false,
+      bool sync = false}) {
+    // Exemplo de uso
+    /*
+      final DataStream<int> dataStream = DataStream.periodicWithInitialValue(
+        initialValue: 0,
+        duration: const Duration(seconds: 1), 
+        callBack: (dataStream, tick) {
+
+          if (tick >= 21) { // imprimir intervalos 0 - 5 e 10 - 20
+            dataStream.dispose();
+          } else if(tick >= 6 && tick <= 9) { // não imprimir os intervalos 6 - 9
+            print('---- não fazer nada ----');
+          } else {
+            dataStream.value = tick;
+          }
+
+        },
+        onListen: (){
+          print('---- Um listen foi iniciado ----');
+        },
+        onCancel: (){
+          print('---- Stream cancelada/disposada ----');
+        }
+      );
+
+      dataStream.stream.listen((value) {
+
+        print('---- listen valeu: $value ----');
+      
+      }).selfCancel(dataStream);
+    */
+
+    return DataStream<O>.broadcast(initialValue,
+            onListen: onListen,
+            onCancel: onCancel,
+            saveAllData: saveAllData,
+            sync: sync)
+        ._callbackPeriodic(duration: duration, callBack: callBack);
+  }
+
   StreamController<O> get streamController => _streamController;
   Stream<O> get stream => _streamController.stream;
 
@@ -178,7 +229,7 @@ class DataStream<O> implements Disposeble {
   /// Disposar todos os objetos necessários que compõe o objeto[DataStream]
   ///
   /// Objetos: [StreamController], [StreamSubscription], [Timer], [List]
-  @mustCallSuper
+  // @mustCallSuper
   @override
   void dispose() {
     _timer?.cancel();

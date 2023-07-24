@@ -65,3 +65,8 @@
 </br>
 
 ## 1.1.4 Implementação da expressão regular [regExpGlobalPhone] para válidar números de telefones através do prefixo
+
+</br>
+</br>
+
+## 1.1.5 Implementações: </br>[DataStream.periodicWithInitialValue]</br>extension: [String > toBytes], [List\<int\> > toBase64] 

@@ -198,7 +198,7 @@ class Functions {
               random.nextInt(26) + 97), // charCode >= 97 & 122 <=
         ).join('');
       case PasswordType
-          .upperLowerCaseLetters: // Characters: CapitalLetters + LowerCaseLetters
+            .upperLowerCaseLetters: // Characters: CapitalLetters + LowerCaseLetters
         return List<String>.generate(
           size,
           (i) {
@@ -214,7 +214,7 @@ class Functions {
           },
         ).join('');
       case PasswordType
-          .numbersLetters: // Characters: numbers + CapitalLetters + LowerCaseLetters
+            .numbersLetters: // Characters: numbers + CapitalLetters + LowerCaseLetters
         return List<String>.generate(
           size,
           (i) {

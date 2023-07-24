@@ -104,6 +104,9 @@ extension FunctionsForString on String {
   String get toEscape => Uri.encodeComponent(this);
   // Suebersson%20Montalv%C3%A3o ==> Suebersson Montalvão
   String get toUnEscape => Uri.decodeComponent(this);
+
+  /// Converter base64 para bytes
+  List<int> get toBytes => base64.decode(this);
 }
 
 extension Utf8ListToString on List<int> {
@@ -111,6 +114,9 @@ extension Utf8ListToString on List<int> {
   // a diferenção é que a mesma não está limitada a tabela ASCII de 0-255 caracteres
   /// Converter uma lista de bytes para [String]
   String get bytesToString => String.fromCharCodes(this);
+
+  /// Converter bytes para base64
+  String get toBase64 => base64.encode(this);
 }
 
 extension GetBase on NumericBase {
@@ -214,11 +220,11 @@ extension FirstWhereMultComputation<T> on List<T> {
   /// o resultado e tenha muitos dados a serem processados para obter um único valor/dado
   Future<T> firstWhereMultComputation(bool Function(T) test,
       {int computation = 4, T Function()? orElse}) {
-    final int _length = length;
+    final int dataLength = length;
 
     /// Se quantidade de [computation] for maior do que a quantidade de dados
     /// ou menor ou igual a 1
-    if (computation >= _length || computation <= 1) {
+    if (computation >= dataLength || computation <= 1) {
       /// Usar apenas uma função[computation] nativa do dart
       return Future.value(firstWhere(test, orElse: orElse));
     } else {
@@ -226,13 +232,13 @@ extension FirstWhereMultComputation<T> on List<T> {
 
       bool isCompleted = false; //completer.isCompleted;
 
-      final int groups = _length ~/ computation;
+      final int groups = dataLength ~/ computation;
 
       late final List<Set<int>> ranges;
 
       /// Se a quantidade de dados que serão processados foi dividido por igual para
       /// a quantidade funções que serão computadas, então, gerar grupos com intervalos iguais
-      if (groups * computation == _length) {
+      if (groups * computation == dataLength) {
         ranges = List<Set<int>>.generate(computation, (i) {
           if (i == 0) {
             return {0, groups * (i + 1) - 1};
@@ -246,7 +252,7 @@ extension FirstWhereMultComputation<T> on List<T> {
           if (i == 0) {
             return {0, groups * (i + 1) - 1};
           } else if (computation == i + 1) {
-            return {groups * i, _length - 1};
+            return {groups * i, dataLength - 1};
           } else {
             return {groups * i, groups * (i + 1) - 1};
           }
@@ -270,7 +276,7 @@ extension FirstWhereMultComputation<T> on List<T> {
 
       for (var c = 0; c < computation; c++) {
         findObject(ranges[c].first, ranges[c].last).then((_) {
-          if (c + 1 == _length && !isCompleted) {
+          if (c + 1 == dataLength && !isCompleted) {
             if (orElse == null) {
               throw FirstWhereMultComputationException(
                   'O valor não foi encontrado no objeto $runtimeType');
