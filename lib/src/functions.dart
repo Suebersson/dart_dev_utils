@@ -5,7 +5,7 @@ import 'dart:developer' as developer;
 import './constants.dart';
 import './extensions.dart';
 
-class Functions {
+mixin Functions {
   /// verificar se a url é válida
   bool isNetworkURL(String url) {
     // assert(url.isNotEmpty, 'Insira o endereço da URL');

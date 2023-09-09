@@ -1,6 +1,6 @@
 import './mixin_dart_dev_utils.dart';
 
-class Constants {
+mixin Constants {
   /// expressão regular para válida url
   final RegExp regExpUrls = RegExp(
       r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");

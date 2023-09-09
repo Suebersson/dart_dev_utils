@@ -44,7 +44,7 @@
 </br>
 </br>
 
-## 1.1.1:
+## 1.1.1
 - Melhorias no objeto DataStream (criar uma instância de uma streamController comum ou broadcast)
 - Melhorias na função removeAccents
 - Implementação da função convertStringToNumericalBase e suas extensões: String.toBinaryList, String.toOctalList, String.toHexadecimalList, String.toDuotrigesimalList, String.toUniCodeList, String.toHexaBytes, String.toBase64, String.base64ToUTF16String
@@ -69,4 +69,11 @@
 </br>
 </br>
 
-## 1.1.5 Implementações: </br>[DataStream.periodicWithInitialValue]</br>extension: [String > toBytes], [List\<int\> > toBase64] 
+## 1.1.5 
+ * Implementações: [DataStream.periodicWithInitialValue]
+ * extension: [String > toBytes], [List\<int\> > toBase64]
+
+</br>
+</br>
+
+## 1.1.6 Atualização dart
