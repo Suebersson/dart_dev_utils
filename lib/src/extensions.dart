@@ -107,6 +107,20 @@ extension FunctionsForString on String {
 
   /// Converter base64 para bytes
   List<int> get toBytes => base64.decode(this);
+
+  /// Verificar se uma string inicia ou termina com uma correspondência[RegExp]
+  ///
+  /// Ex:  print('...suebersson.dev@gmail.com'.startsOrEndsWith(RegExp(r'[_.@-]')));
+  ///
+  bool startsOrEndsWith(RegExp regExp) {
+    if (isEmpty) {
+      return false;
+    } else if (regExp.hasMatch(this[0]) || regExp.hasMatch(this[length - 1])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 extension Utf8ListToString on List<int> {

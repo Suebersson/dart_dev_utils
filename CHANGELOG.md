@@ -77,3 +77,8 @@
 </br>
 
 ## 1.1.6 Atualização dart
+
+</br>
+</br>
+
+## 1.1.7 Implementação da função [startsOrEndsWith] como uma extension para Strings
