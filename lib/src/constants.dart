@@ -1,4 +1,5 @@
 import './mixin_dart_dev_utils.dart';
+import './email.dart';
 
 mixin Constants {
   /// expressão regular para válida url
@@ -6,8 +7,7 @@ mixin Constants {
       r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");
 
   /// expressão regular para válida e-mails
-  final RegExp regExpEmails = RegExp(
-      r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+  RegExp get regExpEmails => Email.regExpEmails;
 
   /// expressão regular para válida datas nos formato americanos
   /// Formato: yyyy-mm-dd; yyyy/mm/dd

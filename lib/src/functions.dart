@@ -4,6 +4,7 @@ import 'dart:developer' as developer;
 
 import './constants.dart';
 import './extensions.dart';
+import './email.dart';
 
 mixin Functions {
   /// verificar se a url é válida
@@ -15,14 +16,8 @@ mixin Functions {
     return dartDevUtils.regExpUrls.hasMatch(url);
   }
 
-  /// verificar se o e-mail é válida
-  bool isEmail(String email) {
-    // assert(email.isNotEmpty, 'Insira o endereço da E-mail');
-    // impossibilitar o processamento se a string for vazia
-    if (email.isEmpty) return false;
-
-    return dartDevUtils.regExpEmails.hasMatch(email);
-  }
+  /// verificar se a string é endereço de e-mail é válida
+  bool isEmail(String email) => email.isEmail;
 
   /// verificar se o texto tem o formato de endereço de telefone
   bool isPhone(String number) {

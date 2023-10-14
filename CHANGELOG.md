@@ -82,3 +82,8 @@
 </br>
 
 ## 1.1.7 Implementação da função [startsOrEndsWith] como uma extension para Strings
+
+</br>
+</br>
+
+## 1.1.8 Implementação da classe [Email] para tratar strings no formato de endereços de emails
