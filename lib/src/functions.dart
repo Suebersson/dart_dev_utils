@@ -27,6 +27,24 @@ mixin Functions {
     return dartDevUtils.regExpGlobalPhone.hasMatch(number);
   }
 
+  /// Ocultar parcialmente os caracteres mantendo
+  /// quantidade de caracteres no texto de telefone
+  String partialObscureTextForPhone(String phone) {
+    if (phone.isNotEmpty && phone.length >= 5) {
+      final RegExp regExpPartialObscureTextForPhone = RegExp('\\*\\d{4}\$');
+
+      for (String char in phone.split('')) {
+        if (regExpPartialObscureTextForPhone.hasMatch(phone)) {
+          break;
+        } else {
+          phone = phone.replaceFirst(char, '*');
+        }
+      }
+    }
+
+    return phone;
+  }
+
   /// verificar se a String e numerica
   bool isNumeric(String text) {
     // assert(str.isNotEmpty, 'Insira uma string numérica');

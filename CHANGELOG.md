@@ -87,3 +87,8 @@
 </br>
 
 ## 1.1.8 Implementação da classe [Email] para tratar strings no formato de endereços de emails
+
+</br>
+</br>
+
+## 1.1.9 Implementação de construtores factory, das funções [partialObscureText] e[partialObscureTextFromRange] dentro do objeto [Email]. Implementação da função [partialObscureTextForPhone] dentro da mixin [Functions]

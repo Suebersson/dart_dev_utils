@@ -7,7 +7,7 @@ mixin Constants {
       r"((https?:www\.)|(https?:\/\/)|(www\.))[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9]{1,6}(\/[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)?");
 
   /// expressão regular para válida e-mails
-  RegExp get regExpEmails => Email.regExpEmails;
+  RegExp get regExpEmails => Email.regExpForEmailsInternal;
 
   /// expressão regular para válida datas nos formato americanos
   /// Formato: yyyy-mm-dd; yyyy/mm/dd

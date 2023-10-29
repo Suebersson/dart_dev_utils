@@ -11,20 +11,30 @@ extension EmailAttributes on String {
 
 /// Classe funcional para tratar endereços de e-mail
 class Email {
-  const Email(this.address);
+  const Email._({required this.address, required this.regExpForEmails});
+
+  factory Email(String address) {
+    return Email._(address: address, regExpForEmails: regExpForEmailsInternal);
+  }
+
+  factory Email.fromRegExp(
+      {required String address, required RegExp regExpForEmails}) {
+    return Email._(address: address, regExpForEmails: regExpForEmails);
+  }
 
   final String address;
+  final RegExp regExpForEmails;
 
   // expressões anteriores:
   //
-  // static final RegExp regExpEmails = RegExp('^[a-z0-9_.-]+(@[a-z0-9-]{2,})+(.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,})\$');
+  // static final RegExp regExpForEmailsInternal = RegExp('^[a-z0-9_.-]+(@[a-z0-9-]{2,})+(.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,}.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,}.[a-z]{2,}|.[a-z]{2,})\$');
   //
-  // static final RegExp regExpEmails = RegExp(
+  // static final RegExp regExpForEmailsInternal = RegExp(
   //   r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
   //
   /// Expressão para testar e verificar se uma string se enquada num
   /// padrão de endereço de e-mail
-  static final RegExp regExpEmails =
+  static final RegExp regExpForEmailsInternal =
       RegExp('^[a-z0-9_.-]*@[a-z0-9]+[.a-z]{2,}\$');
 
   /// Todos os caracteres permitidos
@@ -45,7 +55,7 @@ class Email {
       return (isValid: false, message: 'informe um e-mail');
     } else if (address.contains(' ') ||
         repeatedCharacters.hasMatch(address) ||
-        !regExpEmails.hasMatch(address) ||
+        !regExpForEmails.hasMatch(address) ||
         !allowedAlphabeticCharacters.hasMatch(address[0]) ||
         !allowedAlphabeticCharacters.hasMatch(address[address.length - 1])) {
       return (isValid: false, message: 'informe um endereço de e-mail válido');
@@ -82,5 +92,22 @@ class Email {
     } else {
       return address.split('@').first;
     }
+  }
+
+  /// Ocultar parcialmente os caracteres mantendo quantidade de caracteres no texto de email
+  static String partialObscureText(String email) {
+    for (int i = 0; i < email.length; i++) {
+      if (i > 2 && email[i] != '@') {
+        email = email.replaceRange(i, i + 1, '*');
+      } else if (email[i] == '@') {
+        break;
+      }
+    }
+    return email;
+  }
+
+  /// Ocultar parcialmente um intervalo de caracteres no texto de email
+  static String partialObscureTextFromRange(String email) {
+    return email.replaceRange(2, email.indexOf('@') - 1, '********');
   }
 }
