@@ -97,3 +97,8 @@
 </br>
 
 ## 1.2.0 Implementação da função [computeWhileNull]
+
+</br>
+</br>
+
+## 1.2.1 Tornando a função [computeWhileNull] não static

@@ -273,8 +273,7 @@ mixin Functions {
   }
 
   /// Processar/computar multiplas [Future] enquanto o valor retornado for nulo
-  static Future<T> computeWhileNull<T extends Object?>(
-      Iterable<Future<T>> futures) {
+  Future<T> computeWhileNull<T extends Object?>(Iterable<Future<T>> futures) {
     final Completer<T> completer = Completer<T>.sync();
 
     int numberOfComputations = futures.length;
