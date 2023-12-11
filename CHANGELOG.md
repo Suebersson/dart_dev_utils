@@ -92,3 +92,8 @@
 </br>
 
 ## 1.1.9 Implementação de construtores factory, das funções [partialObscureText] e[partialObscureTextFromRange] dentro do objeto [Email]. Implementação da função [partialObscureTextForPhone] dentro da mixin [Functions]
+
+</br>
+</br>
+
+## 1.2.0 Implementação da função [computeWhileNull]

@@ -271,6 +271,34 @@ mixin Functions {
 
     return Runes(text).map((i) => i.toRadixString(typeBase.getBase)).toList();
   }
+
+  /// Processar/computar multiplas [Future] enquanto o valor retornado for nulo
+  static Future<T> computeWhileNull<T extends Object?>(
+      Iterable<Future<T>> futures) {
+    final Completer<T> completer = Completer<T>.sync();
+
+    int numberOfComputations = futures.length;
+
+    void onValue(T value) {
+      --numberOfComputations;
+
+      if (value != null && !completer.isCompleted) {
+        completer.complete(value);
+      } else if (numberOfComputations <= 0 && !completer.isCompleted) {
+        completer.complete(null);
+      }
+    }
+
+    void onError(Object error, StackTrace stack) {
+      if (!completer.isCompleted) completer.completeError(error, stack);
+    }
+
+    for (final Future<T> future in futures) {
+      future.then(onValue, onError: onError);
+    }
+
+    return completer.future;
+  }
 }
 
 // ###########################################################################
