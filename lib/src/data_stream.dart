@@ -1,7 +1,7 @@
 import 'dart:async' show StreamController, StreamSubscription, FutureOr, Timer;
+import 'package:dependency_manager/dependency_manager.dart' show Disposeble;
 // import 'package:meta/meta.dart' show mustCallSuper;
 
-import './disposeble.dart';
 import './exceptions.dart';
 
 /// Este objeto foi criado para facilitar e externalizar a instância de uma [StreamController]
